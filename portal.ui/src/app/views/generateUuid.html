@@ -1,0 +1,30 @@
+
+<div class="col-lg-4">
+	
+       <button type="button" class="btn btn-primary" (click)="getUUIDOne()">Type1 UUID</button>
+       
+       <input class="form-control" placeholder="UUID Comes here" [(ngModel)]="uuidOne">
+       </div>
+   
+
+
+	
+			<table width="200%" height="100">
+				<tr>
+					<td> <button type="button" class="btn btn-primary" (click)="getUUIDOne()">Type1 UUID</button> </td>
+					<td> <button type="button" class="btn btn-primary" (click)="getUUIDWithoutDashes()">UUID Without Dahses</button> </td>
+					<td> <button type="button" class="btn btn-primary" (click)="getUUIDVersionOne()">UUID Version One</button> </td>
+					<td> <button type="button" class="btn btn-primary" (click)="getUUIDVersionOneWithoutDashes()">UUID Version One</button> </td>
+					
+				</tr>
+				<tr>
+					<td align="right"> <input class="form-control" placeholder="UUID Comes here" [(ngModel)]="uuidOne"> </td>
+					<td align="right"> <input class="form-control" placeholder="UUID Without Dashes" [(ngModel)]="uuidWithoutDashes"> </td>
+					<td align="right"> <input class="form-control" placeholder="UUID Version One" [(ngModel)]="uuidVersionOne"> </td>
+					<td align="right"> <input class="form-control" placeholder="UUID Version One Without Dashes" [(ngModel)]="uuidVersionOneWithoutDashes"> </td>
+				</tr>
+				
+			</table>			
+		
+
+                        
