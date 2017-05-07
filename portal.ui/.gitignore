@@ -1,1 +1,14 @@
 /target/
+src/node_modules
+src/app/*.js.map
+src/app/*.js
+src/app/components/*.js.map
+src/app/components/*.js
+src/app/components/common/*.js.map
+src/app/components/common/*.js
+src/app/services/*.js.map
+src/app/services/*.js
+src/dist
+src/app/.DS_Store
+src/.DS_Store
+.DS_Store
