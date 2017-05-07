@@ -1,0 +1,19 @@
+.file-diff .text-area .input-group {
+  display: block;
+  width: 100%;
+}
+
+.file-diff .text-area textarea {
+  resize: none;
+  height: 300px;
+  width: 100%;
+}
+
+.file-diff .form-submit {
+  margin: 20px 0 10px;
+  text-align: center;
+}
+
+.file-diff .diff-view table{
+    margin: auto;
+}
