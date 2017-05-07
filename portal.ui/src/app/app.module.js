@@ -19,6 +19,8 @@ var app_component_1 = require('./components/app.component');
 var home_component_1 = require('./components/home.component');
 var generate_uuid_component_1 = require('./components/generate-uuid.component');
 var bank_validator_component_1 = require('./components/bank-validator.component');
+var fileDiff_component_1 = require('./components/fileDiff.component');
+var FileInput_1 = require('./components/common/FileInput');
 var app_routing_1 = require('./app.routing');
 // Services
 var uuid_service_1 = require('./services/uuid.service');
@@ -35,7 +37,7 @@ var AppModule = (function () {
                 app_routing_1.routing
             ],
             declarations: [
-                app_component_1.AppComponent, home_component_1.HomeComponent, generate_uuid_component_1.GenerateUuidComponent, bank_validator_component_1.BankValidatorComponent
+                app_component_1.AppComponent, home_component_1.HomeComponent, generate_uuid_component_1.GenerateUuidComponent, bank_validator_component_1.BankValidatorComponent, fileDiff_component_1.FileDiffComponent, FileInput_1.FileInput
             ],
             providers: [
                 http_2.BaseRequestOptions, uuid_service_1.UuidService, global_shared_service_1.GlobalSharedService

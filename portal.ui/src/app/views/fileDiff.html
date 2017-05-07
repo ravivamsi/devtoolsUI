@@ -1,0 +1,14 @@
+<div class="file-diff">
+  <div class="base text-area col-md-6">
+    <file-input [title]="baseFile.title" [fileText]="baseFile.text" (update)="baseFile.textUpdate($event)"></file-input>
+  </div>
+  <div class="new text-area col-md-6">
+    <file-input [title]="changedFile.title" [fileText]="changedFile.text" (update)="changedFile.textUpdate($event)"></file-input>
+  </div>
+  <div class="col-md-12 form-submit">
+    <button type="button" class="btn btn-primary" (click)="getDiff()">Find difference</button>
+  </div>
+
+  <div id="diffView" class="col-md-12 diff-view">
+  </div>
+</div>
