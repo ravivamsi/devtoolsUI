@@ -3,7 +3,7 @@ import {FileInput} from './common/FileInput';
 
 @Component({
 	 templateUrl: 'app/views/fileDiff.html',
-   selector: 'homePage',
+   selector: 'fileDiff',
    directives: [FileInput]
 })
 
@@ -24,6 +24,8 @@ export class FileDiffComponent implements OnInit {
         this.text = event.text;
       }
     }
+
+		ngOnInit() {}
 
     constructor() {
 
