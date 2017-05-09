@@ -9,6 +9,7 @@ src/app/components/common/*.js
 src/app/services/*.js.map
 src/app/services/*.js
 src/dist
+src/npm-debug.log
 src/app/.DS_Store
 src/.DS_Store
 .DS_Store
