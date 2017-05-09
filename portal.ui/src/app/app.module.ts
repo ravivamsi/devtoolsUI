@@ -11,6 +11,9 @@ import { AppComponent }  from './components/app.component';
 import { HomeComponent } from './components/home.component';
 import { GenerateUuidComponent } from './components/generate-uuid.component';
 import { BankValidatorComponent } from './components/bank-validator.component';
+import { FileDiffComponent } from './components/fileDiff.component';
+import { FileFormatComponent } from './components/fileformat.component';
+import { FileInput } from './components/common/FileInput';
 import { routing }        from './app.routing';
 
 
@@ -26,9 +29,15 @@ import { GlobalSharedService } from './services/global-shared.service';
         routing
     ],
     declarations: [
-        AppComponent,HomeComponent, GenerateUuidComponent, BankValidatorComponent
+        AppComponent,
+        HomeComponent,
+        GenerateUuidComponent,
+        BankValidatorComponent,
+        FileDiffComponent,
+        FileFormatComponent,
+        FileInput
     ],
-    providers: [       
+    providers: [
         BaseRequestOptions, UuidService, GlobalSharedService
     ],
     bootstrap: [AppComponent],
