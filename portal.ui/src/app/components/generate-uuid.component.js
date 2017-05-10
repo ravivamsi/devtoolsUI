@@ -13,7 +13,46 @@ var uuid_service_1 = require('./../services/uuid.service');
 var GenerateUuidComponent = (function () {
     function GenerateUuidComponent(uuidService) {
         this.uuidService = uuidService;
+        this.uuidCount = 1;
     }
+    GenerateUuidComponent.prototype.getUUID = function () {
+        var _this = this;
+        console.log(this.uuidType + "  --  " + this.uuidCount);
+        if (this.uuidCount == null)
+            this.uuidCount = 1;
+        if (this.uuidType == "typeOne") {
+            this.uuidService.getMulitpleUUIDs(this.uuidCount).subscribe(function (data) {
+                console.log(data);
+                _this.uuids = data.uuid;
+            }, function (error) {
+                console.log('Exception');
+            });
+        }
+        else if (this.uuidType == "typeOneWithoutDashes") {
+            this.uuidService.getMultipleUUIDsWithoutDashes(this.uuidCount).subscribe(function (data) {
+                console.log(data);
+                _this.uuids = data.uuid;
+            }, function (error) {
+                console.log('Exception');
+            });
+        }
+        else if (this.uuidType == "versionOne") {
+            this.uuidService.getMultipleUUIDsVersionOne(this.uuidCount).subscribe(function (data) {
+                console.log(data);
+                _this.uuids = data.uuid;
+            }, function (error) {
+                console.log('Exception');
+            });
+        }
+        else if (this.uuidType == "versionOneWithoutDashes") {
+            this.uuidService.getMultipleUUIDsVersionOneWithoutDashes(this.uuidCount).subscribe(function (data) {
+                console.log(data);
+                _this.uuids = data.uuid;
+            }, function (error) {
+                console.log('Exception');
+            });
+        }
+    };
     GenerateUuidComponent.prototype.getUUIDOne = function () {
         var _this = this;
         console.log("uuidOne method called");
@@ -46,6 +85,22 @@ var GenerateUuidComponent = (function () {
         console.log("uuid Version One Without Dashes");
         this.uuidService.getUUIDVersionOneWithoutDashes().subscribe(function (data) {
             _this.uuidVersionOneWithoutDashes = data.uuid;
+        }, function (error) {
+            console.log('Exception');
+        });
+    };
+    GenerateUuidComponent.prototype.generateMultipleUUID = function () {
+        console.log("Generate Multiple UUID");
+        this.uuidService.getMulitpleUUIDs().subscribe(function (data) {
+            console.log(data);
+        }, function (error) {
+            console.log('Exception');
+        });
+    };
+    GenerateUuidComponent.prototype.generateMultipleUUIDWithoutDashes = function () {
+        console.log("Generate Multiple UUID");
+        this.uuidService.getMultipleUUIDsWithoutDashes().subscribe(function (data) {
+            console.log(data);
         }, function (error) {
             console.log('Exception');
         });

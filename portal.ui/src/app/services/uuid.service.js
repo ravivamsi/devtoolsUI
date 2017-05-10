@@ -17,12 +17,17 @@ var UuidService = (function () {
     function UuidService(http, globalSharedService) {
         this.http = http;
         this.globalSharedService = globalSharedService;
+        this.multipleUUIDCount = '5';
         this.contextUrl = this.globalSharedService.contextUrl;
         this.baseUrl = this.contextUrl + '/generate';
         this.getUUIDTypeOneURL = this.baseUrl + '/uuid4';
         this.getUUIDWithoutDashesURL = this.baseUrl + '/uuid4/dash';
         this.getUuidVersionOneURL = this.baseUrl + '/uuid1';
         this.getUUIDVersionOneWithoutDashesURL = this.baseUrl + '/uuid1/dash';
+        this.getMultipleUUIDURL = this.baseUrl + '/uuid4/';
+        this.getMultipleUUIDWithoutDashesURL = this.baseUrl + '/uuid4/dash/';
+        this.getMultipleUUIDVersionOneURL = this.baseUrl + '/uuid1/';
+        this.getMultipleUUIDVersionOneWithoutDashesURL = this.baseUrl + '/uuid1/dash/';
     }
     UuidService.prototype.handleError = function (error) {
         console.log(error);
@@ -51,9 +56,33 @@ var UuidService = (function () {
     };
     UuidService.prototype.getUUIDVersionOneWithoutDashes = function () {
         var _this = this;
-        console.log("getUuidVersionOne without dates method in service called");
+        console.log("getUuidVersionOne without dashes method in service called");
         return this.http
             .get(this.getUUIDVersionOneWithoutDashesURL, '', { headers: this.globalSharedService.getJWTHeader() }).map(function (response) { return response.json(); })
+            .catch(function (err) { return _this.handleError(err); });
+    };
+    UuidService.prototype.getMulitpleUUIDs = function (count) {
+        var _this = this;
+        return this.http
+            .get(this.getMultipleUUIDURL + count, '', { headers: this.globalSharedService.getJWTHeader() }).map(function (response) { return response.json(); })
+            .catch(function (err) { return _this.handleError(err); });
+    };
+    UuidService.prototype.getMultipleUUIDsWithoutDashes = function (count) {
+        var _this = this;
+        return this.http
+            .get(this.getMultipleUUIDWithoutDashesURL + count, '', { headers: this.globalSharedService.getJWTHeader() }).map(function (response) { return response.json(); })
+            .catch(function (err) { return _this.handleError(err); });
+    };
+    UuidService.prototype.getMultipleUUIDsVersionOne = function (count) {
+        var _this = this;
+        return this.http
+            .get(this.getMultipleUUIDVersionOneURL + count, '', { headers: this.globalSharedService.getJWTHeader() }).map(function (response) { return response.json(); })
+            .catch(function (err) { return _this.handleError(err); });
+    };
+    UuidService.prototype.getMultipleUUIDsVersionOneWithoutDashes = function (count) {
+        var _this = this;
+        return this.http
+            .get(this.getMultipleUUIDVersionOneWithoutDashesURL + count, '', { headers: this.globalSharedService.getJWTHeader() }).map(function (response) { return response.json(); })
             .catch(function (err) { return _this.handleError(err); });
     };
     UuidService = __decorate([
