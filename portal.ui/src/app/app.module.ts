@@ -15,6 +15,9 @@ import { CheckerComponent } from './components/checker.component';
 import { ConvertersComponent } from './components/converters.component';
 import { DateToolsComponent } from './components/date-tools.component';
 import { DictionaryComponent } from './components/dictionary.component';
+import { FileDiffComponent } from './components/fileDiff.component';
+import { FileFormatComponent } from './components/fileformat.component';
+import { FileInput } from './components/common/FileInput';
 import { routing }        from './app.routing';
 
 
@@ -36,6 +39,14 @@ import { DictionaryService } from './services/dictionary.service';
     declarations: [
         AppComponent,HomeComponent, GenerateUuidComponent, BankValidatorComponent, CheckerComponent, 
         ConvertersComponent, DateToolsComponent, DictionaryComponent
+        AppComponent,
+        HomeComponent,
+        GenerateUuidComponent,
+        BankValidatorComponent,
+        FileDiffComponent,
+        FileFormatComponent,
+        FileInput, CheckerService, ConvertersService,
+        DateToolsService, DictionaryService
     ],
     providers: [       
         BaseRequestOptions, UuidService, GlobalSharedService, CheckerService, ConvertersService,
