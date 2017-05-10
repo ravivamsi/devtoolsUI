@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {FileInput} from './common/FileInput';
+import { validateXMLString } from './common/utils';
 
 @Component({
 	 templateUrl: 'app/views/fileFormatter.html',
@@ -16,6 +17,9 @@ export class FileFormatComponent implements OnInit {
         this.text = event.text;
       }
     }
+
+		formatted = false
+		formatError = ''
 
 		escape(string, regEx, escapeMap) {
 		  return ('' + string).replace(regEx, function(match) {
@@ -56,10 +60,16 @@ export class FileFormatComponent implements OnInit {
 
     formatFile() {
 			var text = '';
+			this.formatted = false;
+			this.formatError = '';
 			if(!this.baseFile.text) {
 				return;
 			}
 			text = this.baseFile.text;
+			if(!validateXMLString(text)) {
+				this.formatError = "XML is not valid";
+				return;
+			}
       var tokens = text.replace(/>\s{0,}</g,"><")
          .replace(/</g,"%@%@<")
          .replace(/xmlns\:/g,"%@%@xmlns:")
@@ -124,7 +134,8 @@ export class FileFormatComponent implements OnInit {
           this.appendElement(tokens[i], true, formatElm);
         }
       }
-			formatElm.classList.add('visible');
+
+			this.formatted = true;
 
     }
 

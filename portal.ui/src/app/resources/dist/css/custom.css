@@ -28,15 +28,10 @@
 }
 
 .file-format .format-view {
-  display: none;
   margin: auto;
   width: 60%;
   border: 1px solid #cccccc;
   padding: 10px;
-}
-
-.file-format .format-view.visible {
-  display: block;
 }
 
 .file-diff .text-area {

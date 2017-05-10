@@ -1,4 +1,5 @@
 <div class="file-format file-container">
+  <div class="alert alert-warning" role="alert" *ngIf="formatError">{{formatError}}</div>
   <div class="base text-area clearfix">
     <file-input [title]="baseFile.title" [fileText]="baseFile.text" (update)="baseFile.textUpdate($event)"></file-input>
   </div>
@@ -6,6 +7,6 @@
     <button type="button" class="btn btn-primary" (click)="formatFile()">Format</button>
   </div>
 
-  <div id="formatView" class="format-view">
+  <div id="formatView" class="format-view" [hidden]="!formatted">
   </div>
 </div>
