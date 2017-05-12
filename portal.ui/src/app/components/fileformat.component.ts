@@ -63,11 +63,10 @@ export class FileFormatComponent implements OnInit {
 
 		ngOnInit() {}
 
-		formatXML(text): HTMLElement {
+		formatXML(text): any {
 			var formatElm = document.createElement('div');
 			if(!validateXMLString(text)) {
-				this.formatError = "XML is not valid";
-				return '';
+				throw 'exception';
 			}
 			var tokens = text.replace(/>\s{0,}</g,"><")
 				 .replace(/</g,"%@%@<")
@@ -96,35 +95,25 @@ export class FileFormatComponent implements OnInit {
 						// <elm></elm> //
 						this.appendElement(tokens[i], true, formatElm);
 						if(!commented) this.depth--;
-				} else
-				 // <elm> //
-				if(tokens[i].search(/<\w/) > -1 && tokens[i].search(/<\//) == -1 && tokens[i].search(/\/>/) == -1 ) {
-					if(!commented ) {
-						this.depth++;
-					}
+				} else if(tokens[i].search(/<\w/) > -1 && tokens[i].search(/<\//) == -1 && tokens[i].search(/\/>/) == -1 ) {
+					// <elm> //
 					this.appendElement(tokens[i], commented, formatElm);
-				} else
-				 // <elm>...</elm> //
-				if(tokens[i].search(/<\w/) > -1 && tokens[i].search(/<\//) > -1) {
+					if(!commented ) this.depth++;
+				} else if(tokens[i].search(/<\w/) > -1 && tokens[i].search(/<\//) > -1) {
+					// <elm>...</elm> //
 					this.appendElement(tokens[i], commented, formatElm);
-				} else
-				// </elm> //
-				if(tokens[i].search(/<\//) > -1) {
-					if(!commented) {
-						--this.depth;
-					}
+				} else if(tokens[i].search(/<\//) > -1) {
+					// </elm> //
+					if(!commented) --this.depth;
 					this.appendElement(tokens[i], commented, formatElm);
-				} else
-				// <elm/> //
-				if(tokens[i].search(/\/>/) > -1 ) {
+				} else if(tokens[i].search(/\/>/) > -1 ) {
+					// <elm/> //
 					this.appendElement(tokens[i], commented, formatElm);
-				} else
-				// <? xml ... ?> //
-				if(tokens[i].search(/<\?/) > -1) {
+				} else if(tokens[i].search(/<\?/) > -1) {
+					// <? xml ... ?> //
 					this.appendElement(tokens[i], false, formatElm);
-				} else
-				// xmlns //
-				if( tokens[i].search(/xmlns\:/) > -1  || tokens[i].search(/xmlns\=/) > -1) {
+				} else if( tokens[i].search(/xmlns\:/) > -1  || tokens[i].search(/xmlns\=/) > -1) {
+					// xmlns //
 					this.appendElement(tokens[i], false, formatElm);
 				} else if(tokens[i]){
 					this.appendElement(tokens[i], true, formatElm);
@@ -133,8 +122,8 @@ export class FileFormatComponent implements OnInit {
 			return formatElm;
 		}
 
-		formatJSON(text): HTMLElement {
-			if (typeof JSON === 'undefined' ) return;
+		formatJSON(text): any {
+			if (typeof JSON === 'undefined' ) return '';
 			var step = 4, jsonStr;
 			if ( typeof text === "string" ) {
 				jsonStr = JSON.parse(text);
@@ -167,7 +156,12 @@ export class FileFormatComponent implements OnInit {
 			text = this.baseFile.text;
 			var formatView = document.getElementById('formatView');
 			formatView.innerHTML = '';
-			var formattedText = this[this.formatFileFunc[this.model.fileType]](text);
+			try {
+				var formattedText = this[this.formatFileFunc[this.model.fileType]](text);
+			} catch(e) {
+				this.formatError = "Enter valid " + this.model.fileType + " text";
+				return;
+			}
 			if(formattedText) {
 				formatView.appendChild(formattedText);
 				this.formatted = true;

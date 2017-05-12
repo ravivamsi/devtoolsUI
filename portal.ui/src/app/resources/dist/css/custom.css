@@ -39,3 +39,8 @@
   padding: 0 20px;
   display: inline-block;
 }
+
+.file-container .file-type-select {
+  width: 20%;
+  margin: auto;
+}
