@@ -11,12 +11,16 @@ import { validateXMLString } from './common/utils';
 export class FileFormatComponent implements OnInit {
 
     baseFile = {
-      title: 'XML text',
+      title: 'Text',
       text: "",
       textUpdate: function(event) {
         this.text = event.text;
       }
     }
+
+		model = {
+			fileType: 'xml'
+		}
 
 		formatted = false
 		formatError = ''
@@ -33,14 +37,15 @@ export class FileFormatComponent implements OnInit {
 			'>': '&gt;',
 			'"': '&quot;',
 			"'": '&#x27;',
-			'/': '&#x2F;'
+			'/': '&#x2F;',
+			' ': '&nbsp;'
 		}
 
 		depth = 0
 
 		appendElement(str, addToLast, elm) {
 				var div;
-				str = this.escape(str, /[&<>"'\/]/g, this.htmlEscapeMap);
+				str = this.escape(str, /[&<>"'\s\/]/g, this.htmlEscapeMap);
 				if(addToLast) {
 					div = elm.lastChild;
 					div.innerHTML += str;
@@ -58,6 +63,100 @@ export class FileFormatComponent implements OnInit {
 
 		ngOnInit() {}
 
+		formatXML(text): HTMLElement {
+			var formatElm = document.createElement('div');
+			if(!validateXMLString(text)) {
+				this.formatError = "XML is not valid";
+				return '';
+			}
+			var tokens = text.replace(/>\s{0,}</g,"><")
+				 .replace(/</g,"%@%@<")
+				 .replace(/xmlns\:/g,"%@%@xmlns:")
+				 .replace(/xmlns\=/g,"%@%@xmlns=")
+				 .split('%@%@'),
+				len = tokens.length,
+				commented = false;
+
+			this.depth = 0;
+			for(var i=0; i<len; i++) {
+				// start comment or <![CDATA[...]]> or <!DOCTYPE //
+				if(tokens[i].search(/<!/) > -1) {
+					this.appendElement(tokens[i], false, formatElm);
+					commented = true;
+					// end comment  or <![CDATA[...]]> //
+					if(tokens[i].search(/-->/) > -1 || tokens[i].search(/\]>/) > -1 || tokens[i].search(/!DOCTYPE/) > -1 ) {
+						commented = false;
+					}
+				} else if(tokens[i].search(/-->/) > -1 || tokens[i].search(/\]>/) > -1) {
+					// end comment  or <![CDATA[...]]> //s
+					this.appendElement(tokens[i], true, formatElm);
+					commented = false;
+				} else if( /^<\w/.exec(tokens[i-1]) && /^<\/\w/.exec(tokens[i]) &&
+					/^<[\w:\-\.\,]+/.exec(tokens[i-1]) == /^<\/[\w:\-\.\,]+/.exec(tokens[i])[0].replace('/','')) {
+						// <elm></elm> //
+						this.appendElement(tokens[i], true, formatElm);
+						if(!commented) this.depth--;
+				} else
+				 // <elm> //
+				if(tokens[i].search(/<\w/) > -1 && tokens[i].search(/<\//) == -1 && tokens[i].search(/\/>/) == -1 ) {
+					if(!commented ) {
+						this.depth++;
+					}
+					this.appendElement(tokens[i], commented, formatElm);
+				} else
+				 // <elm>...</elm> //
+				if(tokens[i].search(/<\w/) > -1 && tokens[i].search(/<\//) > -1) {
+					this.appendElement(tokens[i], commented, formatElm);
+				} else
+				// </elm> //
+				if(tokens[i].search(/<\//) > -1) {
+					if(!commented) {
+						--this.depth;
+					}
+					this.appendElement(tokens[i], commented, formatElm);
+				} else
+				// <elm/> //
+				if(tokens[i].search(/\/>/) > -1 ) {
+					this.appendElement(tokens[i], commented, formatElm);
+				} else
+				// <? xml ... ?> //
+				if(tokens[i].search(/<\?/) > -1) {
+					this.appendElement(tokens[i], false, formatElm);
+				} else
+				// xmlns //
+				if( tokens[i].search(/xmlns\:/) > -1  || tokens[i].search(/xmlns\=/) > -1) {
+					this.appendElement(tokens[i], false, formatElm);
+				} else if(tokens[i]){
+					this.appendElement(tokens[i], true, formatElm);
+				}
+			}
+			return formatElm;
+		}
+
+		formatJSON(text): HTMLElement {
+			if (typeof JSON === 'undefined' ) return;
+			var step = 4, jsonStr;
+			if ( typeof text === "string" ) {
+				jsonStr = JSON.parse(text);
+			}
+			if ( typeof text === "object" ) {
+				jsonStr = text;
+			}
+			var json = JSON.stringify(jsonStr, null, step),
+				tokens = json.split(/\n/g),
+				formatElm = document.createElement('div');
+			this.depth = 0;
+			tokens.forEach(function(tkn) {
+					this.appendElement(tkn, false, formatElm);
+			}.bind(this));
+			return formatElm; // text is not string nor object
+		}
+
+		formatFileFunc = {
+			'xml': 'formatXML',
+			'json': 'formatJSON'
+		}
+
     formatFile() {
 			var text = '';
 			this.formatted = false;
@@ -66,76 +165,14 @@ export class FileFormatComponent implements OnInit {
 				return;
 			}
 			text = this.baseFile.text;
-			if(!validateXMLString(text)) {
-				this.formatError = "XML is not valid";
-				return;
+			var formatView = document.getElementById('formatView');
+			formatView.innerHTML = '';
+			var formattedText = this[this.formatFileFunc[this.model.fileType]](text);
+			if(formattedText) {
+				formatView.appendChild(formattedText);
+				this.formatted = true;
 			}
-      var tokens = text.replace(/>\s{0,}</g,"><")
-         .replace(/</g,"%@%@<")
-         .replace(/xmlns\:/g,"%@%@xmlns:")
-         .replace(/xmlns\=/g,"%@%@xmlns=")
-         .split('%@%@'),
- 				len = tokens.length,
-				commented = false,
-				formatElm = document.getElementById('formatView');
 
-			formatElm.innerHTML = '';
-
-			this.depth = 0;
-      for(var i=0; i<len; i++) {
-        // start comment or <![CDATA[...]]> or <!DOCTYPE //
-        if(tokens[i].search(/<!/) > -1) {
-          this.appendElement(tokens[i], false, formatElm);
-          commented = true;
-          // end comment  or <![CDATA[...]]> //
-          if(tokens[i].search(/-->/) > -1 || tokens[i].search(/\]>/) > -1 || tokens[i].search(/!DOCTYPE/) > -1 ) {
-            commented = false;
-          }
-        } else if(tokens[i].search(/-->/) > -1 || tokens[i].search(/\]>/) > -1) {
-					// end comment  or <![CDATA[...]]> //s
-          this.appendElement(tokens[i], true, formatElm);
-          commented = false;
-        } else if( /^<\w/.exec(tokens[i-1]) && /^<\/\w/.exec(tokens[i]) &&
-          /^<[\w:\-\.\,]+/.exec(tokens[i-1]) == /^<\/[\w:\-\.\,]+/.exec(tokens[i])[0].replace('/','')) {
-	          // <elm></elm> //
-          	this.appendElement(tokens[i], true, formatElm);
-          	if(!commented) this.depth--;
-        } else
-         // <elm> //
-        if(tokens[i].search(/<\w/) > -1 && tokens[i].search(/<\//) == -1 && tokens[i].search(/\/>/) == -1 ) {
-          if(!commented ) {
-            this.depth++;
-          }
-					this.appendElement(tokens[i], commented, formatElm);
-        } else
-         // <elm>...</elm> //
-        if(tokens[i].search(/<\w/) > -1 && tokens[i].search(/<\//) > -1) {
-					this.appendElement(tokens[i], commented, formatElm);
-        } else
-        // </elm> //
-        if(tokens[i].search(/<\//) > -1) {
-					if(!commented) {
-						--this.depth;
-					}
-					this.appendElement(tokens[i], commented, formatElm);
-        } else
-        // <elm/> //
-        if(tokens[i].search(/\/>/) > -1 ) {
-					this.appendElement(tokens[i], commented, formatElm);
-        } else
-        // <? xml ... ?> //
-        if(tokens[i].search(/<\?/) > -1) {
-					this.appendElement(tokens[i], false, formatElm);
-        } else
-        // xmlns //
-        if( tokens[i].search(/xmlns\:/) > -1  || tokens[i].search(/xmlns\=/) > -1) {
-					this.appendElement(tokens[i], false, formatElm);
-        } else if(tokens[i]){
-          this.appendElement(tokens[i], true, formatElm);
-        }
-      }
-
-			this.formatted = true;
 
     }
 
