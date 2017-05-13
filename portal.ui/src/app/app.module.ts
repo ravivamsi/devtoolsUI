@@ -17,6 +17,8 @@ import { DateToolsComponent } from './components/date-tools.component';
 import { DictionaryComponent } from './components/dictionary.component';
 import { FileDiffComponent } from './components/fileDiff.component';
 import { FileFormatComponent } from './components/fileformat.component';
+import { AbbrevationComonent } from './components/abbrevation.component';
+import { CountryComponent } from './components/country.component';
 import { FileInput } from './components/common/FileInput';
 import { routing }        from './app.routing';
 
@@ -28,29 +30,91 @@ import { CheckerService } from './services/checker.service';
 import { ConvertersService } from './services/converters.service';
 import { DateToolsService } from './services/date-tools.service';
 import { DictionaryService } from './services/dictionary.service';
+import { AbbrevationService } from './services/abbrevation.service';
+import { CountryService } from './services/country.service';
+import {
+    MultiSelectModule,
+    TooltipModule,
+    RadioButtonModule,
+    GrowlModule,
+    CalendarModule,
+    InputTextModule,
+    InputTextareaModule,
+    DataTableModule,
+    ButtonModule,
+    DialogModule,
+    DropdownModule,
+    PanelModule,
+    InputMaskModule,
+    PasswordModule,
+    CheckboxModule,
+    MessagesModule,
+    MenubarModule,
+    EditorModule,
+    RatingModule,
+    AutoCompleteModule,
+    TabViewModule,
+    DragDropModule,    
+    ConfirmDialogModule,
+    ConfirmationService,
+    ChartModule,
+    FileUploadModule,
+    GalleriaModule,
+    OrderListModule,
+    ProgressBarModule
+} from 'primeng/primeng';
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
+        MultiSelectModule,
+        TooltipModule,
+        RadioButtonModule,
+        GrowlModule,
+        CalendarModule,
+        InputTextModule,
+        InputTextareaModule,
+        DataTableModule,
+        ButtonModule,
+        DialogModule,
+        DropdownModule,
+        PanelModule,
+        InputMaskModule,
+        PasswordModule,
+        CheckboxModule,
+        MessagesModule,
+        MenubarModule,
+        EditorModule,
+        RatingModule,
+        AutoCompleteModule,
+        TabViewModule,
+        DragDropModule,    
+        ConfirmDialogModule,
+        ChartModule,
+        FileUploadModule,
+        GalleriaModule,
+        OrderListModule,
+        ProgressBarModule,
         routing
     ],
     declarations: [
-        AppComponent,HomeComponent, GenerateUuidComponent, BankValidatorComponent, CheckerComponent, 
-        ConvertersComponent, DateToolsComponent, DictionaryComponent
+        CheckerComponent, 
+        ConvertersComponent, DateToolsComponent, DictionaryComponent,
         AppComponent,
         HomeComponent,
         GenerateUuidComponent,
         BankValidatorComponent,
         FileDiffComponent,
         FileFormatComponent,
-        FileInput, CheckerService, ConvertersService,
-        DateToolsService, DictionaryService
+        AbbrevationComonent,
+        CountryComponent,
+        FileInput
     ],
     providers: [       
         BaseRequestOptions, UuidService, GlobalSharedService, CheckerService, ConvertersService,
-        DateToolsService, DictionaryService
+        DateToolsService, DictionaryService, AbbrevationService, CountryService
     ],
     bootstrap: [AppComponent],
     directives: [ROUTER_DIRECTIVES]
