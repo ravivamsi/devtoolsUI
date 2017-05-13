@@ -13,7 +13,9 @@ import { GenerateUuidComponent } from './components/generate-uuid.component';
 import { BankValidatorComponent } from './components/bank-validator.component';
 import { FileDiffComponent } from './components/fileDiff.component';
 import { FileFormatComponent } from './components/fileformat.component';
+import { TimerComponent } from './components/timer.component';
 import { FileInput } from './components/common/FileInput';
+import { Clock } from './components/common/Clock';
 import { routing }        from './app.routing';
 
 
@@ -35,7 +37,9 @@ import { GlobalSharedService } from './services/global-shared.service';
         BankValidatorComponent,
         FileDiffComponent,
         FileFormatComponent,
-        FileInput
+        TimerComponent,
+        FileInput,
+        Clock
     ],
     providers: [
         BaseRequestOptions, UuidService, GlobalSharedService
