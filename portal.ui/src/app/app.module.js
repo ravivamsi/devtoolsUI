@@ -23,6 +23,13 @@ var checker_component_1 = require('./components/checker.component');
 var converters_component_1 = require('./components/converters.component');
 var date_tools_component_1 = require('./components/date-tools.component');
 var dictionary_component_1 = require('./components/dictionary.component');
+var fileDiff_component_1 = require('./components/fileDiff.component');
+var fileformat_component_1 = require('./components/fileformat.component');
+var abbrevation_component_1 = require('./components/abbrevation.component');
+var country_component_1 = require('./components/country.component');
+var timer_component_1 = require('./components/timer.component');
+var FileInput_1 = require('./components/common/FileInput');
+var Clock_1 = require('./components/common/Clock');
 var app_routing_1 = require('./app.routing');
 // Services
 var uuid_service_1 = require('./services/uuid.service');
@@ -31,6 +38,9 @@ var checker_service_1 = require('./services/checker.service');
 var converters_service_1 = require('./services/converters.service');
 var date_tools_service_1 = require('./services/date-tools.service');
 var dictionary_service_1 = require('./services/dictionary.service');
+var abbrevation_service_1 = require('./services/abbrevation.service');
+var country_service_1 = require('./services/country.service');
+var primeng_1 = require('primeng/primeng');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -40,15 +50,54 @@ var AppModule = (function () {
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,
+                primeng_1.MultiSelectModule,
+                primeng_1.TooltipModule,
+                primeng_1.RadioButtonModule,
+                primeng_1.GrowlModule,
+                primeng_1.CalendarModule,
+                primeng_1.InputTextModule,
+                primeng_1.InputTextareaModule,
+                primeng_1.DataTableModule,
+                primeng_1.ButtonModule,
+                primeng_1.DialogModule,
+                primeng_1.DropdownModule,
+                primeng_1.PanelModule,
+                primeng_1.InputMaskModule,
+                primeng_1.PasswordModule,
+                primeng_1.CheckboxModule,
+                primeng_1.MessagesModule,
+                primeng_1.MenubarModule,
+                primeng_1.EditorModule,
+                primeng_1.RatingModule,
+                primeng_1.AutoCompleteModule,
+                primeng_1.TabViewModule,
+                primeng_1.DragDropModule,
+                primeng_1.ConfirmDialogModule,
+                primeng_1.ChartModule,
+                primeng_1.FileUploadModule,
+                primeng_1.GalleriaModule,
+                primeng_1.OrderListModule,
+                primeng_1.ProgressBarModule,
                 app_routing_1.routing
             ],
             declarations: [
-                app_component_1.AppComponent, home_component_1.HomeComponent, generate_uuid_component_1.GenerateUuidComponent, bank_validator_component_1.BankValidatorComponent, checker_component_1.CheckerComponent,
-                converters_component_1.ConvertersComponent, date_tools_component_1.DateToolsComponent, dictionary_component_1.DictionaryComponent
+                checker_component_1.CheckerComponent,
+                converters_component_1.ConvertersComponent, date_tools_component_1.DateToolsComponent, dictionary_component_1.DictionaryComponent,
+                app_component_1.AppComponent,
+                home_component_1.HomeComponent,
+                generate_uuid_component_1.GenerateUuidComponent,
+                bank_validator_component_1.BankValidatorComponent,
+                fileDiff_component_1.FileDiffComponent,
+                fileformat_component_1.FileFormatComponent,
+                abbrevation_component_1.AbbrevationComonent,
+                country_component_1.CountryComponent,
+                timer_component_1.TimerComponent,
+                FileInput_1.FileInput,
+                Clock_1.Clock
             ],
             providers: [
                 http_2.BaseRequestOptions, uuid_service_1.UuidService, global_shared_service_1.GlobalSharedService, checker_service_1.CheckerService, converters_service_1.ConvertersService,
-                date_tools_service_1.DateToolsService, dictionary_service_1.DictionaryService
+                date_tools_service_1.DateToolsService, dictionary_service_1.DictionaryService, abbrevation_service_1.AbbrevationService, country_service_1.CountryService
             ],
             bootstrap: [app_component_1.AppComponent],
             directives: [router_1.ROUTER_DIRECTIVES]

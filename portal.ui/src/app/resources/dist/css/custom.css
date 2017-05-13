@@ -34,8 +34,68 @@
   padding: 10px;
 }
 
-.file-diff .text-area {
+.file-diff .text-area, .clock-container .clocks {
   width: 48%;
   padding: 0 20px;
   display: inline-block;
+  vertical-align: top;
+}
+
+.clock-container .clocks:not(last-child) {
+  border-right: 1px solid #cccccc;
+}
+
+.file-container .file-type-select {
+  width: 20%;
+  margin: auto;
+}
+
+.clock {
+  color: #fff;
+  display: inline-block;
+  font-weight: 100;
+  text-align: center;
+  font-size: 30px;
+}
+
+.clock > div {
+  padding: 10px;
+  border-radius: 3px;
+  background: #45D5DC;
+  display: inline-block;
+}
+
+.clock div > span {
+  padding: 15px;
+  border-radius: 3px;
+  background: #337AB7;
+  display: inline-block;
+}
+
+.clock div > span input {
+  width: 35px;
+  border: 0;
+  background: #337AB7;
+  color: #fff;
+}
+
+.clock .smalltext{
+  padding-top: 5px;
+  font-size: 16px;
+}
+
+.clock-container .clocks > div {
+  width: 80%;
+  margin: auto;
+}
+
+.clocks .buttons {
+  padding: 20px 0;
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button  {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
 }

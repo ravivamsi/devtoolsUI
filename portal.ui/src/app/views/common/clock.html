@@ -1,0 +1,26 @@
+<div class="clock">
+  <div>
+    <span class="days">
+      <input type="number" [(ngModel)]="time.days" (keyup)="onTimeChange($event, 'days')" max="99" [readonly]="!editable" />
+    </span>
+    <div class="smalltext">Days</div>
+  </div>
+  <div>
+    <span class="hours">
+      <input type="number" [(ngModel)]="time.hours" (keyup)="onTimeChange($event, 'hours')" max="23" [readonly]="!editable" />
+    </span>
+    <div class="smalltext">Hours</div>
+  </div>
+  <div>
+    <span class="minutes">
+      <input type="number" [(ngModel)]="time.minutes" (keyup)="onTimeChange($event, 'minutes')" max="60" [readonly]="!editable" />
+    </span>
+    <div class="smalltext">Minutes</div>
+  </div>
+  <div>
+    <span class="seconds">
+      <input type="number" [(ngModel)]="time.seconds" (keyup)="onTimeChange($event, 'seconds')" max="60" [readonly]="!editable" />
+    </span>
+    <div class="smalltext">Seconds</div>
+  </div>
+</div>

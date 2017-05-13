@@ -11,6 +11,7 @@ import { FileDiffComponent } from './components/fileDiff.component';
 import { FileFormatComponent } from './components/fileformat.component';
 import { AbbrevationComonent } from './components/abbrevation.component';
 import { CountryComponent } from './components/country.component';
+import { TimerComponent } from './components/timer.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent},
@@ -24,6 +25,8 @@ const appRoutes: Routes = [
     { path: 'filediff', component: FileDiffComponent},
     { path: 'abbrevations', component: AbbrevationComonent },
     { path: 'country', component: CountryComponent }
+    { path: 'filediff', component: FileDiffComponent },
+    { path: 'timer', component: TimerComponent }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

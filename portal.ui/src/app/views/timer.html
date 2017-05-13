@@ -1,0 +1,15 @@
+<div class="clock-container">
+  <div class="clocks">
+    <div class="timer">
+      <div class="title">
+        <h3>Timer</h3>
+      </div>
+      <clock [time]="timer.clockTime" [editable]="timer.editable" (update)="timer.timeUpdate($event)"></clock>
+      <div class="buttons">
+        <button type="button" class="btn btn-primary" (click)="startTimer()">{{timer.editable? 'Start' : 'Stop'}}</button>
+      </div>
+    </div>
+  </div>
+  <div class="clocks">
+  </div>
+</div>
