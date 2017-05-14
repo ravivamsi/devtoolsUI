@@ -11,5 +11,21 @@
     </div>
   </div>
   <div class="clocks">
+    <div class="stopwatch">
+      <div class="title">
+        <h3>Stopwatch</h3>
+      </div>
+      <clock [time]="stopWatch.clockTime" [editable]="false" (update)="stopWatch.timeUpdate($event)"></clock>
+      <div class="buttons">
+        <button type="button" class="btn btn-primary" (click)="startWatch()">{{stopWatch.inProgress? 'Stop' : 'Start'}}</button>
+        <button type="button" class="btn btn-secondary" (click)="resetWatch()">{{stopWatch.paused? 'Reset' : 'Pause'}}</button>
+      </div>
+      <div class="laps" [hidden]="!stopWatch.lapTimes || stopWatch.lapTimes.length == 0">
+        <h5>Laps</h5>
+        <div class="lap-time" *ngFor=" let lap of stopWatch.lapTimes">
+          {{lap.hours}}:{{lap.minutes}}:{{lap.seconds}}
+        </div>
+      </div>
+    </div>
   </div>
 </div>

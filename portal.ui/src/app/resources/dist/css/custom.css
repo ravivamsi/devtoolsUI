@@ -41,7 +41,7 @@
   vertical-align: top;
 }
 
-.clock-container .clocks:not(last-child) {
+.clock-container .clocks:not(:last-child) {
   border-right: 1px solid #cccccc;
 }
 
