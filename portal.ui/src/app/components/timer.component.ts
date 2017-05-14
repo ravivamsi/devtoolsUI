@@ -16,11 +16,27 @@ export class TimerComponent implements OnInit {
         hours: '00',
         seconds: '00'
       },
-      timeInterval: '',
+      timeInterval: 0,
       editable: true,
       timeUpdate: function(event) {
         this.clockTime = event.time;
       }
+    }
+
+    stopWatch = {
+      clockTime: {
+        days: '0',
+        minutes: '00',
+        hours: '00',
+        seconds: '00'
+      },
+      timeInterval: 0,
+      inProgress: false,
+      timeUpdate: function(event) {
+        this.clockTime = event.time;
+      },
+      paused: false,
+      lapTimes: []
     }
 
 		ngOnInit() {}
@@ -29,8 +45,8 @@ export class TimerComponent implements OnInit {
 
     }
 
-    getTimeRemaining(endtime) {
-      var t = Date.parse(endtime) - Date.now();
+    getTimeRemaining(endTime, startTime) {
+      var t = endTime - startTime;
       var seconds = Math.floor((t / 1000) % 60);
       var minutes = Math.floor((t / 1000 / 60) % 60);
       var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
@@ -56,12 +72,12 @@ export class TimerComponent implements OnInit {
     startTimer() {
       if(this.timer.editable) {
         this.timer.editable = false;
-        var endtime = new Date(Date.now() + this.getTimeInMillis(this.timer.clockTime));
+        var endTime = Date.now() + this.getTimeInMillis(this.timer.clockTime);
         function updateClock() {
-          var t = this.getTimeRemaining(endtime);
+          var t = this.getTimeRemaining(endTime, Date.now());
           if (t.total < 0) {
             this.timer.editable = true;
-            clearInterval(this.timer.timerInterval);
+            clearInterval(this.timer.timeInterval);
             return;
           }
           this.timer.clockTime = {
@@ -73,11 +89,61 @@ export class TimerComponent implements OnInit {
         }
 
         updateClock.call(this);
-        this.timer.timerInterval = setInterval(updateClock.bind(this), 1000);
+        this.timer.timeInterval = setInterval(updateClock.bind(this), 1000);
       } else {
         this.timer.editable = true;
-        clearInterval(this.timer.timerInterval);
+        clearInterval(this.timer.timeInterval);
       }
+    }
+
+    captureTime() {
+      if(!this.stopWatch.lapTimes) {
+        this.stopWatch.lapTimes = [];
+      }
+      this.stopWatch.lapTimes.push(this.stopWatch.clockTime);
+    }
+
+    startWatch() {
+      if(!this.stopWatch.inProgress) {
+        this.stopWatch.paused = false;
+        this.stopWatch.inProgress = true;
+        var startTime = Date.now() - this.getTimeInMillis(this.stopWatch.clockTime);
+        function updateClock() {
+          var t = this.getTimeRemaining(Date.now(), startTime);
+          this.stopWatch.clockTime = {
+            days: t.days,
+            hours: ('0' + t.hours).slice(-2),
+            minutes: ('0' + t.minutes).slice(-2),
+            seconds: ('0' + t.seconds).slice(-2)
+          };
+        }
+        updateClock.call(this);
+        this.stopWatch.timeInterval = setInterval(updateClock.bind(this), 1000);
+      } else {
+        this.captureTime();
+      }
+    }
+
+    resetWatch() {
+      clearInterval(this.stopWatch.timeInterval);
+      this.stopWatch.inProgress = false;
+      if(this.stopWatch.paused) {
+        this.stopWatch = Object.assign(this.stopWatch, {
+          clockTime: {
+            days: '0',
+            minutes: '00',
+            hours: '00',
+            seconds: '00'
+          },
+          timeInterval: 0,
+          inProgress: false,
+          lapTimes: [],
+          paused: false
+        });
+      } else {
+        this.stopWatch.paused = true;
+      }
+
     }
 
 }
