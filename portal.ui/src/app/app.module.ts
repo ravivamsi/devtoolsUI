@@ -14,6 +14,7 @@ import { BankValidatorComponent } from './components/bank-validator.component';
 import { FileDiffComponent } from './components/fileDiff.component';
 import { FileFormatComponent } from './components/fileformat.component';
 import { TimerComponent } from './components/timer.component';
+import { NewsComponent } from './components/news.component';
 import { FileInput } from './components/common/FileInput';
 import { Clock } from './components/common/Clock';
 import { routing }        from './app.routing';
@@ -22,6 +23,7 @@ import { routing }        from './app.routing';
 // Services
 import { UuidService } from './services/uuid.service';
 import { GlobalSharedService } from './services/global-shared.service';
+import { NewsService } from './services/news.service';
 
 @NgModule({
     imports: [
@@ -38,11 +40,12 @@ import { GlobalSharedService } from './services/global-shared.service';
         FileDiffComponent,
         FileFormatComponent,
         TimerComponent,
+        NewsComponent,
         FileInput,
         Clock
     ],
     providers: [
-        BaseRequestOptions, UuidService, GlobalSharedService
+        BaseRequestOptions, UuidService, GlobalSharedService, NewsService
     ],
     bootstrap: [AppComponent],
     directives: [ROUTER_DIRECTIVES]

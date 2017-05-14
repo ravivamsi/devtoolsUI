@@ -1,0 +1,50 @@
+<div class="news-view">
+  <div class="alert alert-warning" role="alert" *ngIf="errorText">{{errorText}}</div>
+  <div class="filters">
+    <div class="filter country">
+      <label>Country</label>
+      <div class="input-group">
+        <select class="form-control" [(ngModel)]="selectedCountry" (change)="onCountrySelect()">
+          <option *ngFor="let c of countries" [ngValue]="c">{{c.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="filter sources">
+      <label>Sources</label>
+      <div class="input-group">
+        <select class="form-control" [ngClass]="[!selectedCountry? 'disabled': '']" [(ngModel)]="selectedSource" (change)="onSourceSelect()">
+          <option *ngFor="let s of sources" [ngValue]="s">{{s.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="filter sortBy">
+      <label>Sort by</label>
+      <div class="input-group">
+        <select class="form-control" [ngClass]="[!selectedSource? 'disabled': '']" [(ngModel)]="selectedSorting">
+          <option *ngFor="let sort of sortingOptions" [ngValue]="sort">{{sort}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="show-news center">
+    <button type="button" class="btn btn-primary" (click)="showNews()">Show News</button>
+  </div>
+  <div class="news-container">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Author</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let article of newsArticles">
+          <td>{{article.title}}</td>
+          <td>{{article.description.substr(0, 60)}}...<a href="{{article.url}}" target="_blank">more</a></td>
+          <td>{{article.author}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
