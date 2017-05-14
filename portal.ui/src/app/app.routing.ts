@@ -12,6 +12,7 @@ import { FileFormatComponent } from './components/fileformat.component';
 import { AbbrevationComonent } from './components/abbrevation.component';
 import { CountryComponent } from './components/country.component';
 import { TimerComponent } from './components/timer.component';
+import { ApiDocumentationComponent } from './components/api-documentation.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent},
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
     { path: 'abbrevations', component: AbbrevationComonent },
     { path: 'country', component: CountryComponent }
     { path: 'filediff', component: FileDiffComponent },
-    { path: 'timer', component: TimerComponent }
+    { path: 'timer', component: TimerComponent },
+    { path: 'apiDocument', component: ApiDocumentationComponent }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

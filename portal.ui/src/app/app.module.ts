@@ -19,6 +19,7 @@ import { FileDiffComponent } from './components/fileDiff.component';
 import { FileFormatComponent } from './components/fileformat.component';
 import { AbbrevationComonent } from './components/abbrevation.component';
 import { CountryComponent } from './components/country.component';
+import { ApiDocumentationComponent } from './components/api-documentation.component';
 import { TimerComponent } from './components/timer.component';
 import { FileInput } from './components/common/FileInput';
 import { Clock } from './components/common/Clock';
@@ -34,6 +35,9 @@ import { DateToolsService } from './services/date-tools.service';
 import { DictionaryService } from './services/dictionary.service';
 import { AbbrevationService } from './services/abbrevation.service';
 import { CountryService } from './services/country.service';
+import { ApiDocumentationService } from './services/api-documentation.service';
+
+// ng module import
 import {
     MultiSelectModule,
     TooltipModule,
@@ -63,7 +67,10 @@ import {
     FileUploadModule,
     GalleriaModule,
     OrderListModule,
-    ProgressBarModule
+    ProgressBarModule,
+    TreeModule,
+    TreeNode,
+    FieldsetModule
 } from 'primeng/primeng';
 
 @NgModule({
@@ -99,7 +106,9 @@ import {
         GalleriaModule,
         OrderListModule,
         ProgressBarModule,
-        routing
+        routing,
+        TreeModule,
+        FieldsetModule
     ],
     declarations: [
         CheckerComponent, 
@@ -112,6 +121,7 @@ import {
         FileFormatComponent,
         AbbrevationComonent,
         CountryComponent,
+        ApiDocumentationComponent,
         TimerComponent,
         FileInput,
         Clock
@@ -119,7 +129,7 @@ import {
     ],
     providers: [       
         BaseRequestOptions, UuidService, GlobalSharedService, CheckerService, ConvertersService,
-        DateToolsService, DictionaryService, AbbrevationService, CountryService
+        DateToolsService, DictionaryService, AbbrevationService, CountryService, ApiDocumentationService
     ],
     bootstrap: [AppComponent],
     directives: [ROUTER_DIRECTIVES]
