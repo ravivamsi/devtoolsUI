@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NewsService } from './../services/news.service';
+import { isUrl } from './common/utils';
 
 @Component({
 	 templateUrl: 'app/views/news.html',
@@ -80,11 +81,14 @@ export class NewsComponent implements OnInit {
       this.newsService.getNewsArticlesBySourceAndSortBy(this.selectedSource.id, this.selectedSorting).subscribe(
         data => {
           this.newsArticles = data.articles;
+					this.newsArticles.forEach(function(obj) {
+							if(isUrl(obj.author)) {
+								obj.authorUrl = obj.author;
+							}
+					});
         },
         error => {
           console.log("Exception");
-        }
+				}
       );
     }
-
-}

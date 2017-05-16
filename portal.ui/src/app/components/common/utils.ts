@@ -22,3 +22,13 @@ export function validateXMLString(xmlStr) {
     }
   }
 }
+
+export function isUrl(text) {
+  var pattern = new RegExp('(https?:\/\/)+'+ // protocol
+    '((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,})','i'); // domain name
+  if(!pattern.test(text)) {
+    return false;
+  } else {
+    return true;
+  }
+}
