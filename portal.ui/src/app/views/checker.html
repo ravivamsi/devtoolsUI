@@ -1,0 +1,335 @@
+<!-- <div class="col-lg-2">
+	<div class="form-group">
+		<label>Check Amstrong Number</label>
+		<input class="form-control" placeholder="Amstrong Number" [(ngModel)]="amstrongNumber">	
+		<button type="button" class="btn btn-outline btn-primary" (click)="checkArmstrong()">Check</button>	
+	</div>
+</div>
+
+<div class="col-lg-2">	
+	<div class="form-group">
+		<label>Check Even Odd</label>
+		<input class="form-control" placeholder="Even Odd" [(ngModel)]="evenAndOdd">	
+		<button type="button" class="btn btn-outline btn-primary" (click)="checkEvenOdd()">Check</button>	
+	</div>
+</div>
+	
+<div class="col-lg-2">
+	<div class="form-group">
+		<label>Check Leap Year</label>
+		<input class="form-control" placeholder="Leap Year" [(ngModel)]="leapYear">	
+		<button type="button" class="btn btn-outline btn-primary" (click)="checkLeapYear()">Check</button>	
+	</div>
+</div>
+
+<div class="col-lg-2">	
+	<div class="form-group">
+		<label>Check Prime Number</label>
+		<input class="form-control" placeholder="Prime Number" [(ngModel)]="primeNumber">	
+		<button type="button" class="btn btn-outline btn-primary" (click)="checkPrimeNumber()">Check</button>	
+	</div>
+</div>
+	
+<div class="col-lg-2">
+	<div class="form-group">
+		<label>Check Palindrome</label>
+		<input class="form-control" placeholder="Palindrome" [(ngModel)]="palindrome">
+		<input type="checkbox" [(ngModel)]="ignoreCase">Ignore Case
+		<button type="button" class="btn btn-outline btn-primary" (click)="checkPalindrome()">Check</button>	
+	</div>				
+</div>
+
+<div class="col-lg-2">
+	<div class="form-group">
+		<label>Division</label>
+		<input class="form-control" placeholder="Division" [(ngModel)]="divisor1">
+		<input class="form-control" placeholder="Divisor" [(ngModel)]="divisor2">
+		<input type="radio" name="division" value="divisor" [(ngModel)]="divisor" checked>Divisor
+		<input type="radio" name="division" value="reminder" [(ngModel)]="divisor">Reminder
+		<input type="radio" name="division" value="quotient" [(ngModel)]="divisor">Quotient
+		<button type="button" class="btn btn-outline btn-primary" (click)="getDivision()">Check</button>	
+	</div>				
+</div>  -->
+
+<!--  New code start here -->
+
+ <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>Arithmatic Checker</h3>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Check Armstrong Number</h2>
+
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <br/>
+                                <div data-parsley-validate class="form-horizontal form-label-left">
+
+
+                                    <div class="form-group success_div ">
+
+                                        <div class="col-md-12">
+                                            <input placeholder="Armstrong Number" type="text" required="required"
+                                                   class="form-control ">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-3 pull-right">
+                                            <button type="button" id="success_button" class="btn btn-success btn-block">Check</button>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3 col-xs-4 pull-left">
+                                            <button type="reset" class="btn btn-default">Reset</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Check Even Odd</h2>
+
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <br/>
+                                <div data-parsley-validate class="form-horizontal form-label-left">
+
+                                    <div class="form-group failure_div">
+
+                                        <div class="col-md-12">
+                                            <input placeholder="Even Odd" type="text" required="required"
+                                                   class="form-control ">
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-3 pull-right">
+                                            <button type="button" id="failure_button" class="btn btn-success btn-block">Check</button>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3 col-xs-4 pull-left">
+                                            <button type="reset" class="btn btn-default">Reset</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Check Leap Year</h2>
+
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <br/>
+                                <div data-parsley-validate class="form-horizontal form-label-left">
+
+                                    <div class="form-group">
+
+                                        <div class="col-md-12">
+                                            <input placeholder="Leap Year" type="text" required="required"
+                                                   class="form-control ">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-3 pull-right">
+                                            <button type="submit" class="btn btn-success btn-block">Check</button>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3 col-xs-4 pull-left">
+                                            <button type="reset" class="btn btn-default">Reset</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Check Prime Number</h2>
+
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <br/>
+                                <div data-parsley-validate class="form-horizontal form-label-left">
+
+                                    <div class="form-group">
+
+                                        <div class="col-md-12">
+                                            <input placeholder="Prime No" type="text" required="required"
+                                                   class="form-control ">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-3 pull-right">
+                                            <button type="submit" class="btn btn-success btn-block">Check</button>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3 col-xs-4 pull-left">
+                                            <button type="reset" class="btn btn-default">Reset</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Check Palindrome</h2>
+
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <br/>
+                                <div data-parsley-validate class="form-horizontal form-label-left">
+
+                                    <div class="form-group">
+
+                                        <div class="col-md-12">
+                                            <input placeholder="Palindrome No" type="text" required="required"
+                                                   class="form-control ">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-3 pull-right">
+                                            <button type="submit" class="btn btn-success btn-block">Check</button>
+                                        </div>
+                                        <div class="col-md-4 pull-right">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox"> Ignore Case
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-3 col-xs-4 pull-left">
+                                            <button type="reset" class="btn btn-default">Reset</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Division</h2>
+
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <br/>
+                                <div data-parsley-validate class="form-horizontal form-label-left">
+
+                                    <div class="form-group">
+
+                                        <div class="col-md-6">
+                                            <input placeholder="Division" type="text" required="required"
+                                                   class="form-control ">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input placeholder="Divisor" type="text" required="required"
+                                                   class="form-control ">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <div class="col-md-4">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                                       value="option1"> Divisor
+                                            </label>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                                       value="option2"> Reminder
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="inlineRadioOptions" id="inlineRadio3"
+                                                       value="option3"> Quotient
+                                            </label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-3 pull-left">
+                                            <button type="submit" class="btn btn-success btn-block">Check</button>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-6 pull-right">
+                                            <input class="form-control" type="text" placeholder="Answer">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            
+            <script>
+    $("#success_button").on("click", function (e) {
+        $(".success_div").addClass("has-success has-feedback");
+        $(".success_div div").append('<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>');
+    });
+
+    $("#failure_button").on("click", function (e) {
+        $(".failure_div").addClass("has-error has-feedback");
+        $(".failure_div div").append('<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>');
+    });
+</script>

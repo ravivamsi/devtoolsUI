@@ -1,30 +1,79 @@
+<blockquote>
+	<p class="text-primary"> A UUID (Universal Unique Identifier) is a 128-bit number used to uniquely identify some object or entity on the Internet. Depending on the specific mechanisms used, a UUID is either guaranteed to be different or is, at least, extremely likely to be different from any other UUID generated until 3400 A.D. The UUID relies upon a combination of components to ensure uniqueness. A guaranteed UUID contains a reference to the network address of the host that generated the UUID, a timestamp (a record of the precise time of a transaction), and a randomly generated component. Because the network address identifies a unique computer, and the timestamp is unique for each UUID generated from a particular host, those two components should sufficiently ensure uniqueness. However, the randomly generated element of the UUID is added as a protection against any unforseeable problem. </p>
+</blockquote>
+
+<br/>
+<br/>
+
+<div align="center">
+	<label>Select UUID Type</label>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+		
+		<select [(ngModel)]="uuidType">
+            <option value="typeOne">Type One</option>
+            <option value="typeOneWithoutDashes">Type One Without Dashes</option>
+            <option value="versionOne">Version One</option>
+            <option value="versionOneWithoutDashes">Version One Without Dashes</option>            
+        </select>
+   	
+   		<br/><br/>
+        <label> How Many ?</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <input  placeholder="Enter text" [(ngModel)]="uuidCount">
+    	<br/><br/>
+        <button type="button" class="btn btn-primary" (click)="getUUID()">Get UUIDs</button>
+        <br/> <br/> <br/>	
+        <textarea  rows="5" cols="50" [(ngModel)]="uuids" align="center"></textarea>
+        
+        
+</div>
+
+
+<!-- <div class="col-lg-4">
+	<div class="form-group">
+		<label>UUID Type One</label>
+		<input class="form-control" placeholder="UUID Comes here" [(ngModel)]="uuidOne">
+	</div>
+	<button type="button" class="btn btn-primary" (click)="getUUIDOne()">Type1 UUID</button>
+</div>
 
 <div class="col-lg-4">
-	
-       <button type="button" class="btn btn-primary" (click)="getUUIDOne()">Type1 UUID</button>
-       
-       <input class="form-control" placeholder="UUID Comes here" [(ngModel)]="uuidOne">
-       </div>
-   
+	<div class="form-group">
+		<label>Multiple UUID Type One</label>
+		<textarea class="form-control" rows="5" ></textarea>
+	</div>
+	<button type="button" class="btn btn-primary" (click)="generateMultipleUUID()">Multiple UUID</button>
+</div>
 
+<div class="col-lg-4">
+	<div class="form-group">
+		<label>UUID Type One Without Dashes</label>
+		<input class="form-control" placeholder="UUID Without Dashes" [(ngModel)]="uuidWithoutDashes">
+	</div>
+	<button type="button" class="btn btn-primary" (click)="getUUIDWithoutDashes()">UUID Without Dahses</button>
+</div>
 
-	
-			<table width="200%" height="100">
-				<tr>
-					<td> <button type="button" class="btn btn-primary" (click)="getUUIDOne()">Type1 UUID</button> </td>
-					<td> <button type="button" class="btn btn-primary" (click)="getUUIDWithoutDashes()">UUID Without Dahses</button> </td>
-					<td> <button type="button" class="btn btn-primary" (click)="getUUIDVersionOne()">UUID Version One</button> </td>
-					<td> <button type="button" class="btn btn-primary" (click)="getUUIDVersionOneWithoutDashes()">UUID Version One</button> </td>
-					
-				</tr>
-				<tr>
-					<td align="right"> <input class="form-control" placeholder="UUID Comes here" [(ngModel)]="uuidOne"> </td>
-					<td align="right"> <input class="form-control" placeholder="UUID Without Dashes" [(ngModel)]="uuidWithoutDashes"> </td>
-					<td align="right"> <input class="form-control" placeholder="UUID Version One" [(ngModel)]="uuidVersionOne"> </td>
-					<td align="right"> <input class="form-control" placeholder="UUID Version One Without Dashes" [(ngModel)]="uuidVersionOneWithoutDashes"> </td>
-				</tr>
-				
-			</table>			
-		
+<div class="col-lg-4">
+	<div class="form-group">
+		<label>Multiple UUID Type One Without Dashes</label>
+		<textarea class="form-control" rows="5"></textarea>
+	</div>
+	<button type="button" class="btn btn-primary" (click)="generateMultipleUUIDWithoutDashes()">Multiple UUID Without Dashes</button>
+</div>
 
+<div class="col-lg-4">
+	<div class="form-group">
+		<label>UUID Version One</label>
+		<input class="form-control" placeholder="UUID Version One" [(ngModel)]="uuidVersionOne">
+	</div>
+	<button type="button" class="btn btn-primary" (click)="getUUIDVersionOne()">UUID Version One</button>
+</div>
+
+<div class="col-lg-4">
+	<div class="form-group">
+		<label>Version One Without Dashes</label>
+		<input class="form-control" placeholder="UUID Version One Without Dashes" [(ngModel)]="uuidVersionOneWithoutDashes">
+	</div>
+	<button type="button" class="btn btn-primary" (click)="getUUIDVersionOneWithoutDashes()">UUID Version One</button>
+</div>  -->
                         
