@@ -15,6 +15,8 @@ import { FileDiffComponent } from './components/fileDiff.component';
 import { FileFormatComponent } from './components/fileformat.component';
 import { TimerComponent } from './components/timer.component';
 import { NewsComponent } from './components/news.component';
+import { ZipComponent } from './components/zip.component';
+import { ObjNgFor } from './components/zip.component';
 import { FileInput } from './components/common/FileInput';
 import { Clock } from './components/common/Clock';
 import { routing }        from './app.routing';
@@ -24,6 +26,7 @@ import { routing }        from './app.routing';
 import { UuidService } from './services/uuid.service';
 import { GlobalSharedService } from './services/global-shared.service';
 import { NewsService } from './services/news.service';
+import { ZipService } from './services/zip.service';
 
 @NgModule({
     imports: [
@@ -41,11 +44,13 @@ import { NewsService } from './services/news.service';
         FileFormatComponent,
         TimerComponent,
         NewsComponent,
+        ZipComponent,
+        ObjNgFor,
         FileInput,
         Clock
     ],
     providers: [
-        BaseRequestOptions, UuidService, GlobalSharedService, NewsService
+        BaseRequestOptions, UuidService, GlobalSharedService, NewsService, ZipService
     ],
     bootstrap: [AppComponent],
     directives: [ROUTER_DIRECTIVES]

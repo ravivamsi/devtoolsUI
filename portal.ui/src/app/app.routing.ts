@@ -7,6 +7,7 @@ import { FileDiffComponent } from './components/fileDiff.component';
 import { FileFormatComponent } from './components/fileformat.component';
 import { TimerComponent } from './components/timer.component';
 import { NewsComponent } from './components/news.component';
+import { ZipComponent } from './components/zip.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent},
@@ -15,7 +16,8 @@ const appRoutes: Routes = [
     { path: 'fileformat', component: FileFormatComponent },
     { path: 'filediff', component: FileDiffComponent },
     { path: 'timer', component: TimerComponent },
-    { path: 'news', component: NewsComponent }
+    { path: 'news', component: NewsComponent },
+    { path: 'zip', component: ZipComponent }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

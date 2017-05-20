@@ -100,7 +100,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     margin: 0;
 }
 
-.news-view {
+.news-view, .zip-view {
   width: 75%;
   margin: auto;
 }
@@ -114,6 +114,31 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 .news-view .show-news {
   margin: 10px auto;
   width: 30%;
+}
+
+.zip-view .show-zip, .zip-view .filter {
+  margin: 10px 0;
+}
+
+.zip-view .zip-container {
+  border: 1px solid #cccccc;
+  padding: 20px;
+}
+
+.zip-view .zip-container h3 {
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+.zip-container .zip-details .field {
+  width: 33%;
+  display: inline-block;
+  text-align: center;
+}
+
+.zip-container .zip-details .field .label {
+  color: #607D8B;
+  font-size: 14px;
 }
 
 input.disabled, select.disabled {
