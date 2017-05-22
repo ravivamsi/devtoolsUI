@@ -1,6 +1,5 @@
 import { Component, Pipe, PipeTransform, OnInit, ViewEncapsulation } from '@angular/core';
 import { ZipService } from './../services/zip.service';
-import { isUrl } from './common/utils';
 
 @Pipe({ name: 'ObjNgFor',  pure: false })
 export class ObjNgFor implements PipeTransform {

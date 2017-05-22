@@ -141,6 +141,10 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
   font-size: 14px;
 }
 
+.vin-view .zip-container .zip-details .field {
+  width: 48%;
+}
+
 input.disabled, select.disabled {
   opacity: 0.5;
   cursor: not-allowed;

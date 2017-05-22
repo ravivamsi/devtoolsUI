@@ -14,6 +14,7 @@ import { CountryComponent } from './components/country.component';
 import { TimerComponent } from './components/timer.component';
 import { NewsComponent } from './components/news.component';
 import { ZipComponent } from './components/zip.component';
+import { VinComponent } from './components/vin.component';
 import { ApiDocumentationComponent } from './components/api-documentation.component';
 
 const appRoutes: Routes = [
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
     { path: 'timer', component: TimerComponent },
     { path: 'news', component: NewsComponent },
     { path: 'zip', component: ZipComponent },
+    { path: 'vin', component: VinComponent },
     { path: 'apiDocument', component: ApiDocumentationComponent }
 ];
 

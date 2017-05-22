@@ -23,6 +23,7 @@ import { ApiDocumentationComponent } from './components/api-documentation.compon
 import { TimerComponent } from './components/timer.component';
 import { NewsComponent } from './components/news.component';
 import { ZipComponent } from './components/zip.component';
+import { VinComponent } from './components/vin.component';
 import { ObjNgFor } from './components/zip.component';
 import { FileInput } from './components/common/FileInput';
 import { Clock } from './components/common/Clock';
@@ -34,6 +35,7 @@ import { UuidService } from './services/uuid.service';
 import { GlobalSharedService } from './services/global-shared.service';
 import { NewsService } from './services/news.service';
 import { ZipService } from './services/zip.service';
+import { VinService } from './services/vin.service';
 import { CheckerService } from './services/checker.service';
 import { ConvertersService } from './services/converters.service';
 import { DateToolsService } from './services/date-tools.service';
@@ -132,13 +134,14 @@ import {
         ZipComponent,
         ObjNgFor,
         FileInput,
-        Clock
+        Clock,
+        VinComponent
 
     ],
     providers: [
         BaseRequestOptions, UuidService, GlobalSharedService, NewsService, ZipService,
         CheckerService, ConvertersService, DateToolsService, DictionaryService, AbbrevationService,
-        CountryService, ApiDocumentationService
+        CountryService, ApiDocumentationService, VinService
     ],
     bootstrap: [AppComponent],
     directives: [ROUTER_DIRECTIVES]
