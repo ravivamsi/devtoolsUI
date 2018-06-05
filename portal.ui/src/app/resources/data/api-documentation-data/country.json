@@ -1,0 +1,47 @@
+[
+    {
+        "header": "Get All Countries",
+        "url": "country/all",
+        "method": "GET",
+        "urlParamsRequired": "None",
+        "urlParamsOptional": "None",
+        "dataParams":"None",
+        "successResponse":{
+        	"code":"200",
+        	"content":"Country data in a JSON Format"
+        },
+        "errorResponse":[
+	        {
+	        	"code":"404 Not Found",
+	        	"content":"error :Countries Not Found"
+	        },
+	        {
+	        	"code":"401 UNAUTHORIZED",
+	        	"content":"error : You are unauthorized to make this request."
+	        }
+        ]        
+    },
+    
+    {
+        "header": "Search Country By Code",
+        "url": "country/{id}/code",
+        "method": "GET",
+        "urlParamsRequired": "id - Country Code",
+        "urlParamsOptional": "None",
+        "dataParams":"None",
+        "successResponse":{
+        	"code":"200",
+        	"content":"Country data in a JSON Format"
+        },
+        "errorResponse":[
+	        {
+	        	"code":"400",
+	        	"content":"error :Bad Request"
+	        },
+	        {
+	        	"code":"401 UNAUTHORIZED",
+	        	"content":"error : You are unauthorized to make this request."
+	        }
+        ]        
+    }       
+]

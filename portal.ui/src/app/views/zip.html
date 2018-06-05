@@ -1,0 +1,31 @@
+<div class="zip-view">
+  <div class="alert alert-warning" role="alert" *ngIf="errorText">{{errorText}}</div>
+  <div class="filters">
+    <div class="filter country">
+      <label>Country</label>
+      <div class="input-group">
+        <select class="form-control" [(ngModel)]="selectedCountry">
+          <option *ngFor="let c of countries | ObjNgFor" [ngValue]="c">{{countries[c]}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="filter sources">
+      <label>Zip</label>
+      <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="zipCode" />
+      </div>
+    </div>
+  </div>
+  <div class="show-zip center">
+    <button type="button" class="btn btn-primary" (click)="showZipDetails()">Show details</button>
+  </div>
+  <div class="zip-container">
+    <h3>ZIP Details</h3>
+    <div class="zip-details">
+      <div class="field" *ngFor="let field of detailsField">
+        <div class="label">{{field.label}}</div>
+        <div class="value">{{getValue(field, zipDetails)}}</div>
+      </div>
+    </div>
+  </div>
+</div>

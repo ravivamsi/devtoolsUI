@@ -1,0 +1,28 @@
+<div class="vin-view zip-view">
+  <div class="alert alert-warning" role="alert" *ngIf="errorText">{{errorText}}</div>
+  <div class="filters">
+    <div class="filter country">
+      <label>Vehicle Identification number</label>
+      <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="vin" />
+      </div>
+    </div>
+    <div class="filter sources">
+      <label>Year</label>
+      <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="year" />
+      </div>
+    </div>
+  </div>
+  <div class="show-zip center">
+    <button type="button" class="btn btn-primary" (click)="showVinDetails()">Check</button>
+  </div>
+  <div class="zip-container">
+    <div class="zip-details">
+      <div class="field" *ngFor="let field of detailsField">
+        <div class="label">{{field.label}}</div>
+        <div class="value">{{getValue(field, vinDetails)}}</div>
+      </div>
+    </div>
+  </div>
+</div>

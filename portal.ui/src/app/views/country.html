@@ -1,0 +1,86 @@
+<blockquote>
+	<h3> <p class="text-primary"> Search County information</p> </h3>
+</blockquote>
+
+<div align="center">
+	<label>Search By</label>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	
+	<select name="language" class="selectpicker" [(ngModel)]="searchType">
+        
+        <option value="code">Code</option>
+        <option value="name">Name</option>
+        <option value="callingcode">Calling Code</option>
+        <option value="capital">Capital</option>
+        <option value="currency">Currency</option>
+        <option value="language">Language</option>
+        <option value="continent">Continent</option>
+        <option value="subcontinent">Sub Continent</option>
+    </select>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+   		
+    <input class="myTextbox" [(ngModel)]="word">	
+	<br/> <br/>
+    <button type="button" class="btn btn-primary" (click)="getCountries()">Search</button>
+    <br/> <br/> <br/>
+    
+   	<p-dataTable [value]="country" [paginator]="true" [rows]="5" expandableRows="true"
+	       			[rowsPerPageOptions]="[5,10,20]" [responsive]="true" [editable]="false" resizableColumns="true"
+	       			 columnResizeMode="expand" reorderableColumns="true"	styleClass="table" #dt> 
+	       	<p-column expander="true" styleClass="col-icon"></p-column>
+			<p-column field="name" header="Name"></p-column>			
+			<p-column field="nativeName" header="Native Name"></p-column>
+			<p-column field="capital" header="Capital"></p-column>	  		
+	  		<p-column field="alpha2Code" header="Code"></p-column>
+	  		<p-column field="region" header="Region"></p-column>
+	  		<p-column field="subregion" header="Subregion"></p-column>
+	  		<p-column field="population" header="Population"></p-column>
+	  		
+	  		<ng-template let-country pTemplate="rowexpansion">
+	  			
+			Borders: 
+	     	<ul class="myList" *ngFor="let border of country.borders">
+	     		{{border}}
+	     	</ul>	
+			<br/>
+			Currencies:
+		     <ul class="myList" *ngFor="let currency of country.currencies">
+		     	{{currency}}
+		     </ul>
+		     <br/>
+		     Languages:
+		     <ul class="myList" *ngFor="let language of country.languages">
+		     	{{language}}
+		     </ul>
+	  		<br/>
+	  		Calling Codes:
+	  		<ul class="myList" *ngFor="let callingCode of country.callingCodes">
+		     	{{callingCode}}
+		     </ul>		
+		     <br/>
+		     Top Level Domains:
+		     <ul class="myList" *ngFor="let domain of country.topLevelDomain">
+		     	{{domain}}
+		     </ul>
+		     <br/>
+		     Time Zones
+		     <ul class="myList" *ngFor="let timeZone of country.timezones">
+		     	{{timeZone}}
+		     </ul>
+		     <br/>		     
+		     Alternate Spellings
+		     <ul class="myList" *ngFor="let altSpelling of country.altSpellings">
+		     	{{altSpelling}}
+		     </ul>
+		     <br/>
+		     LatLong
+		     <ul class="myList" *ngFor="let lat of country.latlng">
+		     	{{lat}}
+		     </ul>
+		     <br/>
+    		</ng-template>
+	  		
+	</p-dataTable> 	
+  	
+  	
+  </div>

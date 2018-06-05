@@ -1,0 +1,75 @@
+<div class="col-lg-12">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Technical Tools
+        </div>
+        <div class="panel-body">
+           <ul class="myList">
+           		<button type="button" class="btn btn-link" (click)="getAPI('country')">Country</button>
+           		<button type="button" class="btn btn-link">Generate UUIDs</button>
+           		<button type="button" class="btn btn-link">Abbrevations</button>
+           		<button type="button" class="btn btn-link">Converters</button>
+           </ul> 
+        </div>
+        <div class="panel-footer">
+            Tools
+        </div>
+    </div>
+</div>
+
+<br/> <br/>
+
+<p-fieldset legend="API Documentation">
+	
+	<ul *ngFor="let api of apiData" >
+		<h3> {{api.header}} </h3>
+		<hr>
+		
+		<ul>
+			<li> <h4> URL: </h4> 
+				 {{api.url}}
+			</li>
+			
+			<li>
+				<h4> Method: </h4>
+				{{api.method}}
+			</li>
+			
+			<li>
+				<h4> URL Params: </h4>
+				Required:
+				{{api.urlParamsRequired}}
+				<br/>
+				Optional:
+				{{api.urlParamsOptional}}
+				<br/>
+				Data Params:
+				{{api.dataParams}}
+			</li>
+			
+			<li>
+				<h4> Success Response </h4>
+				Code: {{api.successResponse.code}}
+				<br/>
+				Response: {{api.successResponse.content}}
+			</li>
+			
+			<li>
+				<h4> Error Response </h4>
+				<ul *ngFor="let error of api.errorResponse">
+					<ul>
+						<li>
+							Code: {{error.code}}
+							<br/>
+							Conent: {{error.content}}
+						</li>
+					</ul>
+				</ul>
+			</li>
+		</ul>
+		
+	</ul>
+
+    
+</p-fieldset>
+        

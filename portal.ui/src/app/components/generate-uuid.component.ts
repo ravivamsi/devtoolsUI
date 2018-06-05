@@ -1,7 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Validators, FormControl, FormGroup, FormBuilder, REACTIVE_FORM_DIRECTIVES, AbstractControl, Control } from '@angular/forms';
-import { Router,NavigationEnd } from '@angular/router';
-import { Headers } from '@angular/http';
 
 import { UuidService } from './../services/uuid.service';
 
@@ -17,8 +14,58 @@ export class GenerateUuidComponent implements OnInit{
     uuidWithoutDashes: string;
     uuidVersionOne: string;
     uuidVersionOneWithoutDashes: string ;
+    uuidType : string;
+    uuidCount : string = 1;
+    uuids : string ;
     
     constructor(private uuidService: UuidService){
+        
+    }
+    
+    getUUID(){
+        console.log(this.uuidType + "  --  " + this.uuidCount);
+        if(this.uuidCount == null)
+            this.uuidCount = 1 ;
+        if(this.uuidType == "typeOne"){
+            this.uuidService.getMulitpleUUIDs(this.uuidCount).subscribe(
+            data => {
+                console.log(data);
+                this.uuids = data.uuid ;
+            },
+            error => {                
+                console.log('Exception');
+            });
+        }
+        else if(this.uuidType == "typeOneWithoutDashes"){
+            this.uuidService.getMultipleUUIDsWithoutDashes(this.uuidCount).subscribe(
+            data => {
+                console.log(data);
+                this.uuids = data.uuid ;
+            },
+            error => {                
+                console.log('Exception');
+            });
+        }
+        else if(this.uuidType == "versionOne"){
+            this.uuidService.getMultipleUUIDsVersionOne(this.uuidCount).subscribe(
+            data => {
+                console.log(data);
+                this.uuids = data.uuid ;
+            },
+            error => {                
+                console.log('Exception');
+            });
+        }
+        else if(this.uuidType == "versionOneWithoutDashes"){
+            this.uuidService.getMultipleUUIDsVersionOneWithoutDashes(this.uuidCount).subscribe(
+            data => {
+                console.log(data);
+                this.uuids = data.uuid ;
+            },
+            error => {                
+                console.log('Exception');
+            });
+        }
         
     }
     
@@ -60,6 +107,30 @@ export class GenerateUuidComponent implements OnInit{
         this.uuidService.getUUIDVersionOneWithoutDashes().subscribe(
             data => {
                 this.uuidVersionOneWithoutDashes=data.uuid;
+            },
+            error => {                
+                console.log('Exception');
+            });
+    }
+    
+    generateMultipleUUID(){
+        console.log("Generate Multiple UUID");
+        this.uuidService.getMulitpleUUIDs().subscribe(
+            data => {                
+                console.log(data);
+                
+            },
+            error => {                
+                console.log('Exception');
+            });
+    }
+    
+    generateMultipleUUIDWithoutDashes(){
+        console.log("Generate Multiple UUID");
+        this.uuidService.getMultipleUUIDsWithoutDashes().subscribe(
+            data => {                
+                console.log(data);
+                
             },
             error => {                
                 console.log('Exception');

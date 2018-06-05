@@ -1,0 +1,43 @@
+ 
+.myTextbox { 
+    border: 1px solid #848484; 
+    -webkit-border-radius: 30px; 
+    -moz-border-radius: 30px; 
+    border-radius: 30px; 
+    outline:0; 
+    height:30px; 
+    width: 275px; 
+    padding-left:10px; 
+    padding-right:10px;
+    font-weight: bold;
+  }
+  
+ .myList{
+ 	display: inline;
+ 	margin: 0;
+ 	padding: 0;
+ }
+ 
+ .taglist {
+  display: inline;
+  list-style: none;
+}
+
+.taglist ul {
+  display: inline;
+}
+
+#myList ul:after {
+  content: ", ";
+}
+
+#myList ul:last-child:after {
+    content: "";
+}
+
+ul.csv { list-style: none; margin: 0; padding: 0; }
+ul.csv li { display: inline; }
+ul.csv li:after { content: ","; }
+ul.csv li:last-child:after { content: ""; }
+  
+  
